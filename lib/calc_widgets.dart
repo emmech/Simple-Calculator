@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'calc_globals.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -25,29 +26,29 @@ class OpButton extends StatelessWidget {
         width: _buttonWidth,
         height: _buttonHeight,
         child: FittedBox(
-          child: FloatingActionButton(
-            elevation: 0.0,
-            onPressed: () {_func(_value);},
-            child:
-              Text(_disp,
-              style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w300),),
-            backgroundColor: _myColor,
-            foregroundColor: calcTheme.theme.opButtonText,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15.0))
-            ),
-        )
-        ));
+            child: FloatingActionButton(
+          elevation: 0.0,
+          onPressed: () {
+            _func(_value);
+          },
+          child: Text(
+            _disp,
+            style:
+                TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
+          ),
+          backgroundColor: _myColor,
+          foregroundColor: calcTheme.theme.opButtonText,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        )));
   }
 
   String _value = "";
   String _disp = "";
-  bool _mini = false;
-  double _fontSize = 20;
+  double _fontSize = 22;
   double _buttonWidth = 10;
   double _buttonHeight = 10;
   Color _myColor = calcTheme.theme.opButton;
-
   Function _func = () {};
   OpButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
@@ -63,16 +64,21 @@ class OpButton extends StatelessWidget {
       _disp = '\u221A';
     else if (_value == 'PI')
       _disp = '\u03c0';
-    else if (_value == '^')
-      _disp = 'x\u02b8';
+//    else if (_value == '^')
+//      _disp = 'x\u02b8';
     else if (_value == 'SQ') {
       _disp = 'x\u00b2';
       _fontSize = 20;
+    } else if (_value == 'INC') {
+      _disp = '\u2191';
+      _fontSize = 30;
     } else if (_value == 'DISC') {
       _disp = '\u2193';
       _fontSize = 30;
-    } else if (_value == '+/-')
-      _fontSize = 20;
+    } else if (_value == 'SWAP') {
+      _disp = '\u21c4';
+      _fontSize = 30;
+    } else if (_value == '+/-') _fontSize = 20;
   }
 }
 
@@ -84,24 +90,24 @@ class NumberButton extends StatelessWidget {
         height: _buttonHeight,
         child: FittedBox(
             child: FloatingActionButton(
-              elevation: 0.0,
-              onPressed: () {_func(_value);},
-              child:
-              Text(_value,
-                style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w300),),
-              backgroundColor: calcTheme.theme.numButton,
-              foregroundColor: calcTheme.theme.numButtonText,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0))
-              ),
-
-            )
-        ));
+          elevation: 0.0,
+          onPressed: () {
+            _func(_value);
+          },
+          child: Text(
+            _value,
+            style:
+                TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
+          ),
+          backgroundColor: calcTheme.theme.numButton,
+          foregroundColor: calcTheme.theme.numButtonText,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        )));
   }
 
   String _value = "";
-  bool _mini = false;
-  double _fontSize = 20;
+  double _fontSize = 22;
   double _buttonWidth = 20;
   double _buttonHeight = 20;
   Function _func = () {};
@@ -115,38 +121,80 @@ class NumberButton extends StatelessWidget {
 
 class MemButton extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
     return Container(
         width: _buttonWidth,
         height: _buttonHeight,
         child: FittedBox(
             child: FloatingActionButton(
-              elevation: 0.0,
-              onPressed: () {_func(_value);},
-              child:
-              Text(_value,
-                style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w300),),
-              backgroundColor: _myColor,
-              foregroundColor: calcTheme.theme.memButtonText,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            ),
+          elevation: 0.0,
+          onPressed: () {
+            _func(_value);
+          },
+          child: Text(
+            _value,
+            style:
+                TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
+          ),
+          backgroundColor: _myColor,
+          foregroundColor: calcTheme.theme.memButtonText,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          ),
         )));
   }
 
   String _value = "";
-  bool _mini = false;
   Color _myColor = calcTheme.theme.memButton;
   double _buttonWidth = 20;
   double _buttonHeight = 20;
-  double _fontSize = 20;
+  double _fontSize = 22;
   Function _func = () {};
   MemButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
     _func = func;
     _buttonWidth = buttonWidth;
     _buttonHeight = buttonHeight;
+  }
+}
+
+class RndButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: _buttonWidth,
+        height: _buttonHeight,
+        child: FittedBox(
+            child: FloatingActionButton(
+          elevation: 0.0,
+          onPressed: () {
+            _func(_value);
+          },
+          child: Text(
+            _value,
+            style:
+                TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
+          ),
+          backgroundColor: _myColor,
+          foregroundColor: calcTheme.theme.memButtonText,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          ),
+        )));
+  }
+
+  String _value = "";
+  Color _myColor = calcTheme.theme.memButton;
+  double _buttonWidth = 20;
+  double _buttonHeight = 20;
+  double _fontSize = 22;
+  Function _func = () {};
+  RndButton(val, buttonWidth, buttonHeight, Function func) {
+    _value = val;
+    _func = func;
+    _buttonWidth = buttonWidth;
+    _buttonHeight = buttonHeight;
+    if (_value.length > 3) _fontSize = 16;
   }
 }
 
@@ -158,25 +206,28 @@ class ClearButton extends StatelessWidget {
         height: _buttonHeight,
         child: FittedBox(
             child: FloatingActionButton(
-              elevation: 0.0,
-              onPressed: () {_func(_value);},
-              child:
-              Text(_value,
-                style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w300),),
-              backgroundColor: calcTheme.theme.clearButton,
-              foregroundColor: calcTheme.theme.clearButtonText,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-              ),
-            )));
+          elevation: 0.0,
+          onPressed: () {
+            _func(_value);
+          },
+          child: Text(
+            _value,
+            style:
+                TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
+          ),
+          backgroundColor: calcTheme.theme.clearButton,
+          foregroundColor: calcTheme.theme.clearButtonText,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          ),
+        )));
   }
 
   String _value = "";
-  bool _mini = false;
   Function _func = () {};
   double _buttonWidth = 20;
   double _buttonHeight = 20;
-  double _fontSize = 20;
+  double _fontSize = 22;
   ClearButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
     _func = func;
@@ -185,31 +236,29 @@ class ClearButton extends StatelessWidget {
   }
 }
 
-
-
 class ThemeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
         width: _buttonWidth,
         height: _buttonHeight,
-        alignment: Alignment.topRight,
         margin: const EdgeInsets.all(0.0),
         child: FittedBox(
             child: FloatingActionButton(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              elevation: 0.0,
-              onPressed: () {_func();},
-              child: Icon(calcTheme.theme.themeIcon),
-              backgroundColor: calcTheme.theme.clearButton,
-              foregroundColor: calcTheme.theme.clearButtonText,
-            )));
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          elevation: 0.0,
+          onPressed: () {
+            _func();
+          },
+          child: Icon(calcTheme.theme.themeIcon),
+          backgroundColor: calcTheme.theme.clearButton,
+          foregroundColor: calcTheme.theme.clearButtonText,
+        )));
   }
 
   Function _func = () {};
   double _buttonWidth = 20;
   double _buttonHeight = 20;
-  double _fontSize = 20;
   ThemeButton(buttonWidth, buttonHeight, Function func) {
     _func = func;
     _buttonWidth = buttonWidth;
@@ -220,23 +269,21 @@ class ThemeButton extends StatelessWidget {
 class OpList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-
     return ListView.builder(
         reverse: true,
         itemCount: _items.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             margin: const EdgeInsets.all(0.0),
-            child: Text(_items[index],
+            child: Text(
+              _items[index],
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w300,
-                  fontStyle: FontStyle.italic,
                   color: calcTheme.theme.opListText),
-            ),);
-        }
-    );
+            ),
+          );
+        });
   }
 
   List<String> _items = <String>[];
