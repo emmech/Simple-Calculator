@@ -37,7 +37,7 @@ class OpButton extends StatelessWidget {
                 TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
           ),
           backgroundColor: _myColor,
-          foregroundColor: calcTheme.theme.opButtonText,
+          foregroundColor: calcTheme.theme.appForeground,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(30.0))),
         )));
@@ -45,10 +45,10 @@ class OpButton extends StatelessWidget {
 
   String _value = "";
   String _disp = "";
-  double _fontSize = 22;
+  double _fontSize = fontSize;
   double _buttonWidth = 10;
   double _buttonHeight = 10;
-  Color _myColor = calcTheme.theme.opButton;
+  Color _myColor = calcTheme.theme.appBackground;
   Function _func = () {};
   OpButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
@@ -68,7 +68,6 @@ class OpButton extends StatelessWidget {
 //      _disp = 'x\u02b8';
     else if (_value == 'SQ') {
       _disp = 'x\u00b2';
-      _fontSize = 20;
     } else if (_value == 'INC') {
       _disp = '\u2191';
       _fontSize = 30;
@@ -99,15 +98,15 @@ class NumberButton extends StatelessWidget {
             style:
                 TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
           ),
-          backgroundColor: calcTheme.theme.numButton,
-          foregroundColor: calcTheme.theme.numButtonText,
+          backgroundColor: calcTheme.theme.appBackground,
+          foregroundColor: calcTheme.theme.appForeground,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(30.0))),
         )));
   }
 
   String _value = "";
-  double _fontSize = 22;
+  double _fontSize = fontSize;
   double _buttonWidth = 20;
   double _buttonHeight = 20;
   Function _func = () {};
@@ -137,7 +136,7 @@ class MemButton extends StatelessWidget {
                 TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
           ),
           backgroundColor: _myColor,
-          foregroundColor: calcTheme.theme.memButtonText,
+          foregroundColor: calcTheme.theme.appForeground,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
@@ -145,10 +144,10 @@ class MemButton extends StatelessWidget {
   }
 
   String _value = "";
-  Color _myColor = calcTheme.theme.memButton;
+  Color _myColor = calcTheme.theme.appBackground;
   double _buttonWidth = 20;
   double _buttonHeight = 20;
-  double _fontSize = 22;
+  double _fontSize = fontSize;
   Function _func = () {};
   MemButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
@@ -176,7 +175,7 @@ class RndButton extends StatelessWidget {
                 TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
           ),
           backgroundColor: _myColor,
-          foregroundColor: calcTheme.theme.memButtonText,
+          foregroundColor: calcTheme.theme.appForeground,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
@@ -184,10 +183,10 @@ class RndButton extends StatelessWidget {
   }
 
   String _value = "";
-  Color _myColor = calcTheme.theme.memButton;
+  Color _myColor = calcTheme.theme.appBackground;
   double _buttonWidth = 20;
   double _buttonHeight = 20;
-  double _fontSize = 22;
+  double _fontSize = 16;
   Function _func = () {};
   RndButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
@@ -215,8 +214,8 @@ class ClearButton extends StatelessWidget {
             style:
                 TextStyle(fontSize: _fontSize, fontWeight: defaultFontWeight),
           ),
-          backgroundColor: calcTheme.theme.clearButton,
-          foregroundColor: calcTheme.theme.clearButtonText,
+          backgroundColor: calcTheme.theme.appBackground,
+          foregroundColor: calcTheme.theme.appForeground,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
@@ -227,7 +226,7 @@ class ClearButton extends StatelessWidget {
   Function _func = () {};
   double _buttonWidth = 20;
   double _buttonHeight = 20;
-  double _fontSize = 22;
+  double _fontSize = fontSize;
   ClearButton(val, buttonWidth, buttonHeight, Function func) {
     _value = val;
     _func = func;
@@ -251,8 +250,8 @@ class ThemeButton extends StatelessWidget {
             _func();
           },
           child: Icon(calcTheme.theme.themeIcon),
-          backgroundColor: calcTheme.theme.clearButton,
-          foregroundColor: calcTheme.theme.clearButtonText,
+          backgroundColor: calcTheme.theme.appBackground,
+          foregroundColor: calcTheme.theme.appForeground,
         )));
   }
 
@@ -278,9 +277,8 @@ class OpList extends StatelessWidget {
             child: Text(
               _items[index],
               style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w300,
-                  color: calcTheme.theme.opListText),
+                  fontWeight: defaultFontWeight,
+                  color: calcTheme.theme.appForeground),
             ),
           );
         });

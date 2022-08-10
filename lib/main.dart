@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'calc_widgets.dart';
 import 'calc_funcs.dart';
 import 'calc_globals.dart';
+import 'calc_themes.dart';
 
 void main() {
-  calcTheme = CalcTheme("dark");
+  calcTheme = CalcTheme("light");
 
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -19,9 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: new ThemeData(
-          scaffoldBackgroundColor: calcTheme.theme.appForeground,
-//          fontFamily: 'Roboto',
+        theme: ThemeData(
+          scaffoldBackgroundColor: calcTheme.theme.appBackground,
           fontFamily: GoogleFonts.rubik().fontFamily,
         ),
         home: MyHomePage());
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return Scaffold(
-      backgroundColor: calcTheme.theme.appForeground,
+      backgroundColor: calcTheme.theme.appBackground,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(0),
         child: AppBar(
@@ -94,7 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.all(10.0),
             width: _hs * .1,
             child: Text('$_memIcon',
-                style: TextStyle(color: calcTheme.theme.memIcon)),
+                style: TextStyle(
+                    color: calcTheme.theme.highlightText,
+                    fontWeight: defaultFontWeight)),
           ),
           Expanded(
               child: Container(
@@ -103,16 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.all(10.0),
             child: Text(
               '$memDisp',
-              style: TextStyle(color: calcTheme.theme.memText),
+              style: TextStyle(
+                  color: calcTheme.theme.highlightText,
+                  fontWeight: defaultFontWeight),
               textAlign: TextAlign.right,
             ),
           )),
-//          Container(
-//            height: _ah * .1,
-//            width: _hs * .3,
-//            margin: const EdgeInsets.all(0.0),
-//            child: ThemeButton(_hs * .3, _ah * .1, themeFunc),
-//          )
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           Container(
@@ -135,8 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.bottomRight,
                     child: Text('$disp',
                         style: TextStyle(
-                          color: calcTheme.theme.resultText,
-                          fontWeight: FontWeight.w200,
+                          color: calcTheme.theme.highlightText,
+                          fontWeight: defaultFontWeight,
                         )),
                   )),
             ]),
@@ -207,11 +205,19 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  buttonFunc(String val, Function func) {
+    setState(() {
+      calcTheme = CalcTheme(currentTheme);
+      HapticFeedback.heavyImpact();
+      func(val);
+    });
+  }
+
   themeFunc() {
     setState(() {
       if (currentTheme == "dark") {
         calcTheme = CalcTheme("light");
-      } else {
+      } else if (currentTheme == "light") {
         calcTheme = CalcTheme("dark");
       }
     });
